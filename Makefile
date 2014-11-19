@@ -659,3 +659,25 @@ topo/us-10m.json: topo/us-states-10m.json
 		--out-object=land \
 		--no-key \
 		-- topo/us-states-10m.json
+
+# Custom Merge of 2015 ACA data. County level.
+GENERATED_FILES = \
+	us-health.json
+
+.PHONY: all clean
+
+all: $(GENERATED_FILES)
+
+clean:
+	rm -rf -- $(GENERATED_FILES) topo
+
+topo/us-health.json: shp/us/counties.shp
+	node_modules/.bin/topojson \
+		-o $@ \
+		--projection 'd3.geo.albersUsa()' \
+		-q 1e5 \
+		-s 1 \
+		-e data/metals.csv \
+		-p rate=+total \
+		--id-property=+FIPS \
+		-- shp/us/counties.shp
