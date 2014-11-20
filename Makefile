@@ -660,9 +660,9 @@ topo/us-10m.json: topo/us-states-10m.json
 		--no-key \
 		-- topo/us-states-10m.json
 
-# Custom Merge of 2015 ACA data. County level.
+# Custom Merge of 2015 ACA deductible data. Bronze Individual.
 GENERATED_FILES = \
-	us-health.json
+	us-health-bi.json
 
 .PHONY: all clean
 
@@ -671,13 +671,79 @@ all: $(GENERATED_FILES)
 clean:
 	rm -rf -- $(GENERATED_FILES) topo
 
-topo/us-health.json: shp/us/counties.shp
+topo/us-health-bi.json: shp/us/counties.shp
 	node_modules/.bin/topojson \
 		-o $@ \
 		--projection 'd3.geo.albersUsa()' \
 		-q 1e5 \
 		-s 1 \
-		-e data/metals.csv \
-		-p rate=+total \
+		-e data/deductibles.csv \
+		-p rate=+bi \
+		--id-property=+FIPS \
+		-- shp/us/counties.shp
+
+# Custom Merge of 2015 ACA deductible data. Silver Individual.
+GENERATED_FILES = \
+	us-health-si.json
+
+.PHONY: all clean
+
+all: $(GENERATED_FILES)
+
+clean:
+	rm -rf -- $(GENERATED_FILES) topo
+
+topo/us-health-si.json: shp/us/counties.shp
+	node_modules/.bin/topojson \
+		-o $@ \
+		--projection 'd3.geo.albersUsa()' \
+		-q 1e5 \
+		-s 1 \
+		-e data/deductibles.csv \
+		-p rate=+si \
+		--id-property=+FIPS \
+		-- shp/us/counties.shp
+
+# Custom Merge of 2015 ACA deductible data. Gold Individual.
+GENERATED_FILES = \
+	us-health-gi.json
+
+.PHONY: all clean
+
+all: $(GENERATED_FILES)
+
+clean:
+	rm -rf -- $(GENERATED_FILES) topo
+
+topo/us-health-gi.json: shp/us/counties.shp
+	node_modules/.bin/topojson \
+		-o $@ \
+		--projection 'd3.geo.albersUsa()' \
+		-q 1e5 \
+		-s 1 \
+		-e data/deductibles.csv \
+		-p rate=+gi \
+		--id-property=+FIPS \
+		-- shp/us/counties.shp
+
+# Custom Merge of 2015 ACA deductible data. Plat Individual.
+GENERATED_FILES = \
+	us-health-pi.json
+
+.PHONY: all clean
+
+all: $(GENERATED_FILES)
+
+clean:
+	rm -rf -- $(GENERATED_FILES) topo
+
+topo/us-health-pi.json: shp/us/counties.shp
+	node_modules/.bin/topojson \
+		-o $@ \
+		--projection 'd3.geo.albersUsa()' \
+		-q 1e5 \
+		-s 1 \
+		-e data/deductibles.csv \
+		-p rate=+pi \
 		--id-property=+FIPS \
 		-- shp/us/counties.shp
