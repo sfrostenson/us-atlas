@@ -675,9 +675,9 @@ clean:
 topo/us-health-sf.json: shp/us/counties.shp
 	node_modules/.bin/topojson \
 		-o $@ \
-		--projection 'd3.geo.albersUsa()' \
-		-q 1e5 \
-		-s 1 \
+		--no-pre-quantization \
+		--post-quantization=1e6 \
+		--simplify=7e-7 \
 		-e data/silver-family.csv \
 		-p rate=+sf \
 		--id-property=+FIPS \
