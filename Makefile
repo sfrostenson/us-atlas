@@ -680,7 +680,7 @@ topo/us-health-sf.json: shp/us/counties.shp
 		--simplify=7e-7 \
 		-e data/silver-family.csv \
 		-p rate=+sf \
-		--id-property=+FIPS \
+		--id-property=FIPS \
 		-- shp/us/counties.shp
 
 
