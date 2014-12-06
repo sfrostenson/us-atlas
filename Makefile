@@ -682,6 +682,3 @@ topo/us-health-sf.json: shp/us/counties.shp
 		-p rate=+sf \
 		--id-property=FIPS \
 		-- shp/us/counties.shp
-
-
-
