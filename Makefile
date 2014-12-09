@@ -672,19 +672,8 @@ all: $(GENERATED_FILES)
 clean:
 	rm -rf -- $(GENERATED_FILES) topo
 
+# all csv properties added to topojson
 topo/us-health-sf.json: shp/us/counties.shp
-	node_modules/.bin/topojson \
-		-o $@ \
-		--no-pre-quantization \
-		--post-quantization=1e6 \
-		--simplify=7e-7 \
-		-e data/silver-family.csv \
-		-p rate=+sf \
-		--id-property=FIPS \
-		-- shp/us/counties.shp
-
-# csv properties added to topojson
-topo/mapbox-health-sf.json: shp/us/counties.shp
 	node_modules/.bin/topojson \
 		-o $@ \
 		--no-pre-quantization \
