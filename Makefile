@@ -672,7 +672,7 @@ all: $(GENERATED_FILES)
 clean:
 	rm -rf -- $(GENERATED_FILES) topo
 
-# all csv properties added to topojson
+# initial map load at national level. includes all csv properties.
 topo/us-health-sf.json: shp/us/counties.shp
 	node_modules/.bin/topojson \
 		-o $@ \
@@ -683,3 +683,4 @@ topo/us-health-sf.json: shp/us/counties.shp
 	    --id-property=FIPS \
 	    -p rate=+sf,c=c,s=s \
 	    -- shp/us/counties.shp
+	    
