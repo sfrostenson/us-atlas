@@ -681,6 +681,6 @@ topo/us-health-sf.json: shp/us/counties.shp
 		--simplify=7e-7 \
 	    -e data/sf.csv \
 	    --id-property=FIPS \
-	    -p rate=+m,c=c,s=s,m14=+m14,mdf=+mdf,mx14=+mx14,mx15=+mx15 \
+	    -p m=+m,c=c,s=s,m14=+m14,mdf=+mdf,mx14=+mx14,mx15=+mx15 \
 	    -- shp/us/counties.shp
 	    
