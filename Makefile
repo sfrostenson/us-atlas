@@ -681,12 +681,6 @@ topo/us-health-sf.json: shp/us/counties.shp
 		--simplify=7e-7 \
 	    -e data/sf.csv \
 	    --id-property=FIPS \
-	    -p rate=+sf,c=c,s=s \
+	    -p rate=+m,c=c,s=s,m14=+m14,mdf=+mdf,mx14=+mx14,mx15=+mx15 \
 	    -- shp/us/counties.shp
-
-topo/tx-health-sf.json: shp/us/counties.shp
-	ogr2ogr \
-	  -f GeoJSON \
-	  -where "FIPS IN ('48113', '48467', '48257')" \
-	  -- shp/us/counties.shp
 	    
