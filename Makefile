@@ -683,4 +683,16 @@ topo/us-health-sf.json: shp/us/counties.shp
 	    --id-property=FIPS \
 	    -p m=+m,c=c,s=s,m15=+m15,mx15=+mx15 \
 	    -- shp/us/counties.shp
+
+# 2013 unemployment rate. 
+topo/unemployment.json: shp/us/counties.shp
+	node_modules/.bin/topojson \
+		-o $@ \
+		--no-pre-quantization \
+		--post-quantization=1e6 \
+		--simplify=7e-7 \
+	    -e data/unemployment.csv \
+	    --id-property=FIPS \
+	    -p r=+rate,c=c,s=s \
+	    -- shp/us/counties.shp
 	    
